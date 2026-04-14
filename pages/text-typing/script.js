@@ -41,6 +41,7 @@ let width = window.innerWidth;
 let height = window.innerHeight;
 let textSize = 0;
 let textCenter = 0;
+let popupScheduled = false;
 const letters = [];
 const prompt = ['H', 'E', 'H', 'E', ' ', 'N', 'H', 'Ì', 'N', ' ', 'N', 'È', ];
 let runPrompt = true;
@@ -87,7 +88,6 @@ const animateLetterIn = letter => {
 
 const addDecor = (letter, color) => {
     setTimeout(() => {
-        var rect = letter.getBoundingClientRect();
         const x0 = letter.offsetLeft + letter.offsetWidth / 2;
         const y0 = textCenter - textSize * 0.5;
         const shade = color.shades[Math.floor(Math.random() * 4)];
@@ -180,8 +180,6 @@ const animateLetterOut = (letter, i) => {
         opacity: 0,
         ease: Power2.easeIn,
         onComplete: () => {
-            console.log('removing');
-            console.log(letter);
             offscreenText.removeChild(letter.offScreen);
             text.removeChild(letter.onScreen);
             positionLetters();
@@ -204,6 +202,7 @@ const onInputChange = () => {
     addLetters(value);
     removeLetters(value);
     resizeLetters();
+    maybeOpenNextPage();
 };
 
 const keyup = e => {
@@ -225,18 +224,23 @@ const addPrompt = i => {
 };
 
 resizePage();
-window.addEventListener('resize', resizePage);
+let resizeRaf = null;
+window.addEventListener('resize', () => {
+    if (resizeRaf) {
+        cancelAnimationFrame(resizeRaf);
+    }
+    resizeRaf = requestAnimationFrame(resizePage);
+});
 input.addEventListener('keyup', keyup);
 input.focus();
 addPrompt(0);
 
 var mainPopUp = function() {
-    window.location = "../imgShow/index.html"
+    window.location = "../gallery/index.html"
 }
-var a = function() {
-    if (input.value == 'HEHE NHÌN NÈ') {
+var maybeOpenNextPage = function() {
+    if (!popupScheduled && input.value == 'HEHE NHÌN NÈ') {
+        popupScheduled = true;
         setTimeout(mainPopUp, 1500);
-        clearInterval(interval_obj);
-    };
+    }
 }
-var interval_obj = setInterval(a, 1);

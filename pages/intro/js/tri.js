@@ -3133,7 +3133,7 @@ var okkkk = () => {
             showLoaderOnConfirm: true,
             preConfirm: function (value) {
                 setTimeout(function () {
-                    location.assign('../Main/birthday.html')
+                    location.assign('../birthday/birthday.html')
                 }, 2000)
                 return new Promise(resolve => { }) // never-resolving promise
             },

@@ -56,6 +56,23 @@ Bạn có thể truy cập demo để trải nghiệm trực tiếp mà không c
   <li>Bắt đầu trải nghiệm 🚀</li>
 </ul>
 
+<h2>🗂️ Cấu trúc dự án (đã tái cấu trúc)</h2>
+
+<pre>
+pages/
+  intro/        # Màn chào và điều hướng vào quà
+  birthday/     # Trang sinh nhật chính
+  text-typing/  # Màn hiệu ứng gõ chữ
+  gallery/      # Màn ảnh + chuyển sang video
+</pre>
+
+<p>
+Luồng chính hiện tại: <code>pages/intro/temp.html</code> →
+<code>pages/birthday/birthday.html</code> →
+<code>pages/text-typing/index.html</code> →
+<code>pages/gallery/index.html</code>.
+</p>
+
 <br>
 
 <p align="center">

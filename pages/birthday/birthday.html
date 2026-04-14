@@ -3,37 +3,43 @@
 
 <head>
     <title>Happy Birthday</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://code.jquery.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" media="screen and (orientation: portrait)" href="css/portrait.css">
-    <script type="text/javascript" src="2583860411-widgets.js"></script>
+    <script type="text/javascript" src="2583860411-widgets.js" defer></script>
     <link href='css/css1.css' rel='stylesheet' />
     <link href='css/css3.css' rel='stylesheet' type='text/css' />
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' defer></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js' defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro&subset=latin,vietnamese&display=swap' rel='stylesheet' type='text/css'>
     <!-- snow dowwn -->
-    <script type="text/javascript" src="https://itexpress.vn/API/files/it.snow.js"></script>
+    <script type="text/javascript" src="https://itexpress.vn/API/files/it.snow.js" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js'></script>
-    <script src='https://mattboldt.com/demos/typed-js/js/typed.custom.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
     <!-- <link rel="stylesheet" href="css/popup.css"> -->
-    <script src="js/tri.js" id="typeJs"></script>
+    <script src="js/tri.js" id="typeJs" defer></script>
     <link href='css/tri.css' rel='stylesheet' />
-    <script src="js/snowstorm.js"></script>
+    <script src="js/snowstorm.js" defer></script>
     <link rel="stylesheet" href="css/spinload.css" />
     <link rel="stylesheet" href="css/style.css" id="stylePop">
     <script>
-        snowStorm.snowColor = '#ffffff'; // blue-ish snow!?
-        snowStorm.flakesMaxActive = 200; // show more snow on screen at once
-        snowStorm.useTwinkleEffect = true; // let the snow flicker in and out of view
+        window.addEventListener('load', function() {
+            if (!window.snowStorm) {
+                return;
+            }
+            snowStorm.snowColor = '#ffffff';
+            snowStorm.flakesMaxActive = window.innerWidth < 768 ? 80 : 140;
+            snowStorm.useTwinkleEffect = true;
+        });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 
@@ -54,10 +60,10 @@
         <div class="content">
             <!-- main content -->
             <div id="bg"></div>
-            <img id="e_itexpress_left" src="https://itexpress.vn/images/noel/topleft.png" />
-            <img id="e_itexpress_right" src="https://itexpress.vn/images/noel/topright.png" />
+            <img id="e_itexpress_left" src="https://itexpress.vn/images/noel/topleft.png" loading="lazy" decoding="async" />
+            <img id="e_itexpress_right" src="https://itexpress.vn/images/noel/topright.png" loading="lazy" decoding="async" />
             <div id="e_itexpress_footer"></div>
-            <img id="e_itexpress_bottom_left" src="https://itexpress.vn/images/noel/bottomleft.png" />
+            <img id="e_itexpress_bottom_left" src="https://itexpress.vn/images/noel/bottomleft.png" loading="lazy" decoding="async" />
 
 
 
@@ -74,12 +80,12 @@
                     <h1>Happy Birthday, Star ! </h1>
                     <hr/>
                     <!-- <small>  Make by <i class='fas fa-hand-point-right' style='margin:0 5px'></i>Trí Nè Hihi</small> -->
-                    <img alt='' class='img img-responsive img-circle' src='img/avt.png' style='max-width: 150px' />
+                    <img alt='' class='img img-responsive img-circle' src='img/avt.png' style='max-width: 150px' loading='lazy' decoding='async' />
 
 
                     <p id='txt'></p>
                     <!-- textRun -->
-                    <img id="skipText" src="img/skipText.jpg" alt="a" onclick="skipText()">
+                    <img id="skipText" src="img/skipText.jpg" alt="a" onclick="skipText()" loading="lazy" decoding="async">
 
                     <canvas id='canvas_confetti'></canvas>
                 </div>

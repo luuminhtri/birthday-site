@@ -213,8 +213,8 @@ var getGift = function() {
                                             text: "Tặng bạn một món quà khác nha",
                                             timer: 5000,
                                             showConfirmButton: false,
-                                        }).then(() => { //điều hướng trang sang 'textTyping'
-                                            window.location = '../textTyping/index.html';
+                                        }).then(() => { //điều hướng trang sang 'text-typing'
+                                            window.location = '../text-typing/index.html';
                                         })
                                     } else { // khi nhấn không
                                         Swal.fire({
@@ -343,13 +343,54 @@ var getGift = function() {
 
 
 
-function a() {
-    var textAnimate = document.getElementById('txt').innerText;
-    if (textAnimate == 'Ten Tèn') {
-        var el = document.getElementById('stylePop');
+function onTypingCompleted() {
+    var el = document.getElementById('stylePop');
+    if (el) {
         el.href = "css/popup.css";
-        setTimeout(getGift, 1000);
-        clearInterval(interval_obj);
-    };
+    }
+    setTimeout(getGift, 1000);
 }
-var interval_obj = setInterval(a, 1);
+
+function maybeTriggerGift() {
+    var txtEl = document.getElementById('txt');
+    if (!txtEl) {
+        return false;
+    }
+
+    if (txtEl.innerText === 'Ten Tèn') {
+        onTypingCompleted();
+        return true;
+    }
+
+    return false;
+}
+
+function watchTypingCompletion() {
+    if (maybeTriggerGift()) {
+        return;
+    }
+
+    var txtEl = document.getElementById('txt');
+    if (!txtEl || typeof MutationObserver === 'undefined') {
+        var fallbackTimer = setInterval(function() {
+            if (maybeTriggerGift()) {
+                clearInterval(fallbackTimer);
+            }
+        }, 250);
+        return;
+    }
+
+    var observer = new MutationObserver(function() {
+        if (maybeTriggerGift()) {
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(txtEl, {
+        characterData: true,
+        childList: true,
+        subtree: true
+    });
+}
+
+watchTypingCompletion();
